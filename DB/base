@@ -1,0 +1,31 @@
+DROP DATABASE IF EXISTS BD_FACTURA;
+CREATE DATABASE BD_FACTURA;
+USE BD_FACTURA;
+-- Tabla Cliente
+CREATE TABLE Cliente (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    correo_electronico VARCHAR(255) UNIQUE NOT NULL
+);
+
+-- Tabla Factura
+CREATE TABLE Factura (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    numero_factura VARCHAR(255) UNIQUE NOT NULL,
+    fecha_emision DATE NOT NULL,
+    cliente_id INT,
+    FOREIGN KEY (cliente_id) REFERENCES Cliente(id)
+);
+
+-- Tabla DetalleFactura
+CREATE TABLE Detalle (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    factura_id INT,
+    producto VARCHAR(255) NOT NULL,
+    cantidad INT NOT NULL,
+    precio_unitario DOUBLE NOT NULL,
+    FOREIGN KEY (factura_id) REFERENCES Factura(id)
+);
+
+SELECT * FROM Cliente;
+SELECT * FROM FACTURA;
