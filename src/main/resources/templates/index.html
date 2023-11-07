@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="${titulo}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"></link>
+</head>
+<body th:onload="clock()">
+    <h1 class="color-rojo" th:text="${titulo}"></h1>
+    <img th:src="@{/images/spring.png}"></img>
+
+    <!-- Verificar si la lista de clientes no está vacía -->
+    <div th:if="${clientes.isEmpty()}">No hay clientes en la lista</div>
+
+    <!-- Mostrar la tabla si la lista de clientes no está vacía -->
+    <table th:if="${not clientes.isEmpty()}">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>RUC/DNI</th>
+                <th>Nombre/Razón</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Razón Social</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Crédito</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterar a través de la lista de clientes -->
+            <tr th:each="cliente : ${clientes}">
+                <td th:text="${cliente.nombre}"></td>
+                <td th:text="${cliente.RUC}"></td>
+                <td th:text="${cliente.nombreRazon}"></td>
+                <td th:text="${cliente.apellidoPaterno}"></td>
+                <td th:text="${cliente.apellidoMaterno}"></td>
+                <td th:text="${cliente.razonSocial}"></td>
+                <td th:text="${cliente.direccion}"></td>
+                <td th:text="${cliente.telefono}"></td>
+                <td th:text="${cliente.credito}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
